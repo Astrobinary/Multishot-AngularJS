@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var browserSync = require('browser-sync');
 var nodemon = require('nodemon');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
