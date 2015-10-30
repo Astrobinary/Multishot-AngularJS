@@ -2,15 +2,15 @@
 
 	var productsService = function ($http) {
 
-		var getProducts = function () {
-			return $http.get("/api/products")
+		var getUser = function (user) {
+			return $http.get("/api/user/" + user)
 				.then(function (response) {
 					return response.data;
 				});
 		};
 
 		return {
-			getProducts: getProducts
+			getUser: getUser
 		};
 
 	};

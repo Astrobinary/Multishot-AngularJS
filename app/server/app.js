@@ -24,13 +24,12 @@ router.get('/api/products', product.getAll);
 router.post('/api/product', product.create);
 
 // Get one product, update one product, delete one product
-router.route('/api/product/:id')
-	.get(product.read)
-	.put(product.update)
-	.delete(product.delete);
+router.route('/api/user/:name')
+	.get(product.getUser);
 
 // Register the routing
 app.use('/', router);
+app.use('/:user', product.displayUser);
 
 mongoose.connect('mongodb://localhost/' + databaseName);
 

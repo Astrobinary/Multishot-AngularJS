@@ -1,168 +1,155 @@
 <!DOCTYPE html>
 <html ng-app="Main">
 
-    <head>
-        <meta charset="utf-8">
-        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
 
-        <title>MultiShot</title>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>MultiShot</title>
 
-    </head>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 
-    <body ng-controller="productsController">
-        <nav class="{{styleNav}}" role="navigation">
-            <img alt="" src="images/logo.png"/>
-        </nav>
+</head>
 
-        <!--Avatars-->
-        <div class="top-shot-full">
+<body ng-controller="productsController">
+    <nav class="navbar" role="navigation">
+        <img ng-click="homePage()" alt="" src="images/logo.png" />
+    </nav>
+
+    <!--Avatars-->
+    <div class="top-shot-full" ng-hide="showVideos">
+        <div>
             <div>
-                <div>
-                    <div class="avatar-text">
-                        Lirik</div>
-                    <img alt="" src="images/avatars/lirik.png"/>
-                </div>
-                <div>
-                    <div class="avatar-text">GoldGlove</div>
-                    <img alt="" src="images/avatars/goldglove.png"/>
-                </div>
-                <div>
-                    <div class="avatar-text">Giantwaffle</div>
-                    <img alt="" src="images/avatars/giantwaffle.png"/>
-                </div>
-                <div>
-                    <div class="avatar-text">C9Sneaky</div>
-                    <img alt="" src="images/avatars/c9sneaky.png"/>
-                </div>
-
-                <div>
-                    <img alt="" src="images/avatars/shortyyguy.png"/>
-                    <div class="avatar-text ">Shortyyguy</div>
-                </div>
-                <div>
-                    <img alt="" src="images/avatars/syndicate.png"/>
-                    <div class="avatar-text ">Syndicate</div>
-                </div>
-                <div>
-                    <img alt="" src="images/avatars/trick2g.png"/>
-                    <div class="avatar-text ">Trick2g</div>
-                </div>
-                <div>
-                    <img alt="" src="images/avatars/vernnotice.png"/>
-                    <div class="avatar-text ">VernNotice</div>
-                </div>
+                <div class="avatar-text">Lirik</div>
+                <img ng-click="selectStream('Lirik', 0)" alt="" src="images/avatars/lirik.png" />
+            </div>
+            <div>
+                <div class="avatar-text">GoldGlove</div>
+                <img ng-click="selectStream('Goldglove', 1)" alt="" src="images/avatars/goldglove.png" />
+            </div>
+            <div>
+                <div class="avatar-text">Giantwaffle</div>
+                <img alt="" src="images/avatars/giantwaffle.png" />
+            </div>
+            <div>
+                <div class="avatar-text">C9Sneaky</div>
+                <img alt="" src="images/avatars/c9sneaky.png" />
             </div>
 
-        </div>
-        <div class="view-more">
-            <span class="fa fa-caret-down"></span>
-            View More
-            <span class="fa fa-caret-down"></span>
+            <div>
+                <img alt="" src="images/avatars/shortyyguy.png" />
+                <div class="avatar-text ">Shortyyguy</div>
+            </div>
+            <div>
+                <img alt="" src="images/avatars/syndicate.png" />
+                <div class="avatar-text ">Syndicate</div>
+            </div>
+            <div>
+                <img alt="" src="images/avatars/trick2g.png" />
+                <div class="avatar-text ">Trick2g</div>
+            </div>
+            <div>
+                <img alt="" src="images/avatars/vernnotice.png" />
+                <div class="avatar-text ">VernNotice</div>
+            </div>
         </div>
 
-        <!--Player Videos  -->
-        <!-- <div>
-            <div class="bar"></div>
+    </div>
+    <div class="view-more" ng-hide="showVideos">
+        <span class="fa fa-caret-down"></span>
+        View More
+        <span class="fa fa-caret-down"></span>
+    </div>
 
-            <div class="top-shot-small">
-                <ul>
-                    <li>
-                        <img alt="" class="selected" src="images/avatars/lirik.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/goldglove.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/giantwaffle.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/c9sneaky.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/shortyyguy.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/syndicate.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/trick2g.png"/>
-                    </li>
-                    <li>
-                        <img alt="" src="images/avatars/vernnotice.png"/>
-                    </li>
-                </ul>
+    <!--Player Videos  -->
+    <div ng-show="showVideos">
+        <div class="bar"></div>
 
+        <div class="top-shot-small">
+            <div>
+                <img alt="Lirik" src="images/avatars/lirik.png" />
             </div>
-
-            <div class="buttons">
-                <button class="fa fa-chevron-left left"></button>
-                <button class="fa fa-chevron-right right"></button>
+            <div>
+                <img alt="Goldglove" src="images/avatars/goldglove.png" />
             </div>
-
-            <div class="video-section">
-                <div >
-
-                    <h1>Lirik
-                        <span class="fa fa-twitch"></span>
-                    </h1>
-                    <div class="video">
-                        <iframe frameborder="0" height="360" ng-src="http://oddshot.tv/shot/lirik-20150914232721569/embed" scrolling="no" width="640"></iframe>
-
-                        <div class="vid-bottom">
-                            <p class="votes">
-                                <span class="fa fa-arrow-circle-up {{styleUpVote}}" ng-click="vote('up')"></span>
-                                <span class="fa fa-arrow-circle-down {{styleDownVote}}" ng-click="vote('down')"></span>
-                            </p>
-                            <p class="game-title">Worms Reloaded</p>
-                            <p class="fullscreen">Fullscreen
-                                <span class="fa fa-arrows-alt"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <img alt=GiantWaffle "" src="images/avatars/giantwaffle.png" />
             </div>
+            <div>
+                <img alt="C9Sneaky" src="images/avatars/c9sneaky.png" />
+            </div>
+            <div>
+                <img alt="Shortyyguy" src="images/avatars/shortyyguy.png" />
+            </div>
+            <div>
+                <img alt="Syndicate" src="images/avatars/syndicate.png" />
+            </div>
+            <div>
+                <img alt="Trick2g" src="images/avatars/trick2g.png" />
+            </div>
+            <div>
+                <img alt="VernNotice" src="images/avatars/vernnotice.png" />
+            </div>
+        </div>
 
-            <div class="more-videos">
-                <h1>Recent Shots
-                    <span class="fa fa-caret-square-o-down"></span>
+        <div class="video-section">
+            <div>
+
+                <h1>{{twitchName}}
+                    <span class="fa fa-twitch"></span>
                 </h1>
+                <div class="video">
+                    <iframe frameborder="0" height="{{videoHeight}}" ng-src="{{filterLink(mainVideo)}}" scrolling="no" width="{{videoWidth}}"></iframe>
 
-                <div ng-repeat="product in products">
-                    <div ng-repeat="shot in product.oddshots">
-                        <img alt="" class="preview" ng-class='{select:$first}' ng-src="{{shot.preview}}"/>
+                    <div class="vid-bottom">
+                        <p class="votes">
+                            <span class="fa fa-arrow-circle-up {{styleUpVote}}" ng-click="vote('up')"></span>
+                            <span class="fa fa-arrow-circle-down {{styleDownVote}}" ng-click="vote('down')"></span>
+                        </p>
+                        <p class="game-title">{{mainGame}}</p>
+                        <p class="fullscreen">Expand
+                            <span class="fa fa-arrows-alt"></span>
+                        </p>
                     </div>
                 </div>
             </div>
-
-        </div> -->
-
-        <footer>
-
-            <p>ABOUT</p>
-            <p>FAQ</p>
-            <p>TWITTER</p>
-        </footer>
-        <!-- <div ng-repeat="product in products">
-
-        <div class="in-line">
-            <h1>{{product.name}}</h1>
-
         </div>
 
-        <div ng-repeat="shot in product.oddshots">
-            <iframe ng-src="{{filterLink(shot.link)}}" width="640" height="360" frameborder="0" scrolling="no"></iframe>
-        </div>
-    </div> -->
+        <div class="more-videos">
+            <h1>Recent Shots
+                <span class="fa fa-caret-square-o-down"></span>
+            </h1>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-        <script src="app.module.js"></script>
-        <script src="products/products.service.js"></script>
-        <script src="products/products.controller.js"></script>
-        <script src="//cdn.tmijs.org/js/0.0.24/tmi.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="products/jcarousellite.min.js"></script>
-    </body>
+            <div ng-repeat="product in products ">
+                <div ng-repeat="shot in product.oddshots.slice().reverse()">
+                    <img alt="" ng-click="recentShot(shot.link, shot.game, $index)" class="preview" ng-class='{select:$index == selected}' ng-src="{{shot.preview}}" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>ABOUT</p>|
+        <p>FAQ</p>|
+        <p>TWITTER</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+
+    <script src="app.js"></script>
+    <script src="products/products.service.js"></script>
+    <script src="products/products.controller.js"></script>
+
+    <script src="//cdn.tmijs.org/js/0.0.24/tmi.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+
+</body>
 
 </html>

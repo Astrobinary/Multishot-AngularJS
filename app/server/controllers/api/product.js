@@ -1,6 +1,6 @@
-var Products = require('../../models/products');
+var Products = require('../../models/productModel');
+var path = require('path');
 
-// Wrap all the methods in an object
 var product = {
 	read: function (req, res, next) {
 		res.json({
@@ -42,6 +42,28 @@ var product = {
 			if(err) console.log(err);
 			res.json(data);
 		});
+	},
+	getUser: function (req, res, next) {
+		Products.find({
+			name: req.params.name
+		}, function (err, data) {
+			if(err) console.log(err);
+			res.json(data);
+		});
+	},
+	displayUser: function (req, res, next) {
+		console.log(req.params.name);
+
+		Products.find({
+			name: req.params.name
+		}, function (err, data) {
+			if(err) {
+				return res.status(404).send('Not Found');
+			} else {
+				return res.sendFile(path.join(__dirname, '../../../client', 'index.html'));
+			}
+		});
+
 	}
 };
 
