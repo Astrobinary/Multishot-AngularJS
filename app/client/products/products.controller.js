@@ -8,6 +8,7 @@
 		$scope.selected = 0;
 		$scope.showVideos = false;
 		$scope.init = false;
+		$scope.footer = 'home-footer';
 
 		$rootScope.$on('$locationChangeSuccess', function () {
 			$rootScope.actualLocation = $location.path();
@@ -25,20 +26,18 @@
 					$scope.startCarousel();
 				} else {
 					$scope.homePage();
-				}
+					$scope.footer = 'home-footer';
 
+				}
 			}
 		});
 
 		var modelProducts = function (data) {
 			$scope.products = data;
-
 			var temp = data[0].oddshots.length - 1;
 			$scope.mainVideo = data[0].oddshots[temp].link;
 			$scope.mainGame = data[0].oddshots[temp].game;
-
 			videoResize();
-
 		};
 
 		$scope.selectStream = function (name, position) {
@@ -50,6 +49,7 @@
 			$scope.twitchName = name;
 			$scope.showVideos = true;
 			$scope.selected = 0;
+			$scope.footer = 'video-footer';
 
 		};
 
@@ -66,25 +66,22 @@
 		};
 
 		$scope.homePage = function () {
+			$scope.footer = 'home-footer';
+
 			$scope.showVideos = false;
 			$location.url('/');
-
 			if($('.top-shot-small').slick('getSlick') !== undefined)
 				$('.top-shot-small').slick('unslick');
-
 		};
 
 		$scope.carouselPosition = function () {
 			if($location.path() === '/Lirik') {
 				return 0;
-
 			} else if($location.path() === '/Goldglove') {
 				return 1;
-			}
-			else {
+			} else {
 				$scope.homePage();
 			}
-
 		};
 
 		$scope.refreshCarousel = function () {
@@ -109,9 +106,8 @@
 		$(".top-shot-small img").click(function () {
 			var name = $(this).attr('alt');
 			$scope.twitchName = name;
-			$scope.$apply();
 			$scope.selectStream(name);
-
+			$scope.$apply();
 		});
 
 		$scope.vote = function (direction) {
@@ -151,25 +147,6 @@
 			}
 
 		};
-
-		// var options = {
-		// 	options: {
-		// 		debug: true
-		// 	},
-		// 	connection: {
-		// 		random: "chat",
-		// 		reconnect: true
-		// 	},
-		// 	identity: {
-		// 		username: "KingAgnostic",
-		// 		password: "oauth:kyo9svys672pxvqlmudthegr3u7xmk"
-		// 	},
-		// 	channels: ["agnostics", "syndicate", "captiansparklez", "lirik", "summit1g", "sodapoppin", "goldglove", "trick2g", "GiantWaffle", "swiftor"]
-		// };
-		//
-		// var client = new irc.client(options);
-
-		// client.connect();
 
 		$scope.filterLink = function (link) {
 			return $sce.trustAsResourceUrl(link);

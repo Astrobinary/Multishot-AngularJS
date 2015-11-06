@@ -52,8 +52,6 @@ var product = {
 		});
 	},
 	displayUser: function (req, res, next) {
-		console.log(req.params.name);
-
 		Products.find({
 			name: req.params.name
 		}, function (err, data) {

@@ -21,47 +21,47 @@
 
     <!--Avatars-->
     <div class="top-shot-full" ng-hide="showVideos">
-        <div>
+        <div class="main-circle" ng-hide="showVideos">
             <div>
-                <div class="avatar-text">Lirik</div>
-                <img ng-click="selectStream('Lirik', 0)" alt="" src="images/avatars/lirik.png" />
+                <div class=" avatar-text ">Lirik</div>
+                <img ng-click="selectStream('Lirik', 0) " alt="" src="images/avatars/lirik.png " />
             </div>
             <div>
-                <div class="avatar-text">GoldGlove</div>
-                <img ng-click="selectStream('Goldglove', 1)" alt="" src="images/avatars/goldglove.png" />
+                <div class="avatar-text ">GoldGlove</div>
+                <img ng-click="selectStream('Goldglove', 1) " alt=" " src="images/avatars/goldglove.png " />
             </div>
             <div>
-                <div class="avatar-text">Giantwaffle</div>
-                <img alt="" src="images/avatars/giantwaffle.png" />
+                <div class="avatar-text ">Giantwaffle</div>
+                <img alt=" " src="images/avatars/giantwaffle.png" />
             </div>
             <div>
-                <div class="avatar-text">C9Sneaky</div>
-                <img alt="" src="images/avatars/c9sneaky.png" />
+                <div class="avatar-text ">C9Sneaky</div>
+                <img alt=" " src="images/avatars/c9sneaky.png" />
             </div>
 
             <div>
-                <img alt="" src="images/avatars/shortyyguy.png" />
+                <img alt=" " src="images/avatars/shortyyguy.png" />
                 <div class="avatar-text ">Shortyyguy</div>
             </div>
             <div>
-                <img alt="" src="images/avatars/syndicate.png" />
+                <img alt=" " src="images/avatars/syndicate.png" />
                 <div class="avatar-text ">Syndicate</div>
             </div>
             <div>
-                <img alt="" src="images/avatars/trick2g.png" />
+                <img alt=" " src="images/avatars/trick2g.png" />
                 <div class="avatar-text ">Trick2g</div>
             </div>
             <div>
-                <img alt="" src="images/avatars/vernnotice.png" />
+                <img alt=" " src="images/avatars/vernnotice.png" />
                 <div class="avatar-text ">VernNotice</div>
             </div>
         </div>
 
     </div>
-    <div class="view-more" ng-hide="showVideos">
-        <span class="fa fa-caret-down"></span>
+    <div class="view-more " ng-hide="showVideos ">
+        <span class="fa fa-caret-down "></span>
         View More
-        <span class="fa fa-caret-down"></span>
+        <span class="fa fa-caret-down "></span>
     </div>
 
     <!--Player Videos  -->
@@ -70,13 +70,13 @@
 
         <div class="top-shot-small">
             <div>
-                <img alt="Lirik" src="images/avatars/lirik.png" />
+                <img alt="Lirik" src="images/avatars/lirik.png " />
             </div>
             <div>
-                <img alt="Goldglove" src="images/avatars/goldglove.png" />
+                <img alt="Goldglove" src="images/avatars/goldglove.png " />
             </div>
             <div>
-                <img alt=GiantWaffle "" src="images/avatars/giantwaffle.png" />
+                <img alt="GiantWaffle" src="images/avatars/giantwaffle.png" />
             </div>
             <div>
                 <img alt="C9Sneaky" src="images/avatars/c9sneaky.png" />
@@ -97,12 +97,11 @@
 
         <div class="video-section">
             <div>
-
                 <h1>{{twitchName}}
                     <span class="fa fa-twitch"></span>
                 </h1>
-                <div class="video">
-                    <iframe frameborder="0" height="{{videoHeight}}" ng-src="{{filterLink(mainVideo)}}" scrolling="no" width="{{videoWidth}}"></iframe>
+                <div class="video" ng-show="showVideos">
+                    <iframe frameborder="0" height="{{videoHeight}}" ng-src="{{filterLink(mainVideo)}}" width="{{videoWidth}}" scrolling="no"></iframe>
 
                     <div class="vid-bottom">
                         <p class="votes">
@@ -120,35 +119,34 @@
 
         <div class="more-videos">
             <h1>Recent Shots
-                <span class="fa fa-caret-square-o-down"></span>
+                <span class="fa fa-caret-square-o-down "></span>
             </h1>
 
             <div ng-repeat="product in products ">
-                <div ng-repeat="shot in product.oddshots.slice().reverse()">
-                    <img alt="" ng-click="recentShot(shot.link, shot.game, $index)" class="preview" ng-class='{select:$index == selected}' ng-src="{{shot.preview}}" />
+                <div ng-repeat="shot in product.oddshots.slice().reverse() ">
+                    <img alt=" " ng-click="recentShot(shot.link, shot.game, $index) " class="preview " ng-class='{select:$index == selected}' ng-src="{{shot.preview}} " />
                 </div>
             </div>
         </div>
 
     </div>
 
-    <footer>
+    <footer class="{{footer}}">
         <p>ABOUT</p>|
         <p>FAQ</p>|
         <p>TWITTER</p>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js "></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js "></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js "></script>
 
-    <script src="app.js"></script>
-    <script src="products/products.service.js"></script>
-    <script src="products/products.controller.js"></script>
-
-    <script src="//cdn.tmijs.org/js/0.0.24/tmi.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script src="app.js "></script>
+    <script src="products/products.service.js "></script>
+    <script src="products/products.controller.js "></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js "></script>
+    <script type="text/javascript " src="slick/slick.min.js "></script>
 
 </body>
 

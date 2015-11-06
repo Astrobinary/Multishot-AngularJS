@@ -6,14 +6,6 @@ angular.module('Main.products')
 				templateUrl: '/index.html',
 				controller: 'productsController'
 			}).
-			when('/bacon/cheese', {
-				templateUrl: '/index.html',
-				controller: 'productsController'
-			}).
-			when('/menus/:id', {
-				templateUrl: 'views/job-detail.html',
-				controller: 'JobDetailController'
-			});
 
 			//you can include a fallback by  including .otherwise({
 			//redirectTo: '/jobs'
