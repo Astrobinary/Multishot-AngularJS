@@ -1,0 +1,140 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="top-shot-full" ng-hide="showVideos">
+  <div class="main-circle" ng-hide="showVideos">
+    <div>
+      <div class="avatar-text">Lirik</div>
+      <img alt="Lirik" ng-click="selectStream('Lirik')" src="assets/images/avatars/lirik.png"/>
+    </div>
+    <div>
+      <div class="avatar-text">GoldGlove</div>
+      <img alt="GoldGlove" ng-click="selectStream('Goldglove')" src="assets/images/avatars/goldglove.png"/>
+    </div>
+    <div>
+      <div class="avatar-text">Giantwaffle</div>
+      <img alt="Giantwaffle" ng-click="selectStream('Giantwaffle')" src="assets/images/avatars/giantwaffle.png"/>
+    </div>
+    <div>
+      <div class="avatar-text">C9Sneaky</div>
+      <img alt="C9Sneaky" ng-click="selectStream('C9Sneaky')" src="assets/images/avatars/c9sneaky.png"/>
+    </div>
+
+    <div>
+      <img alt="Shortyyguy" ng-click="selectStream('Shortyyguy')" src="assets/images/avatars/shortyyguy.png"/>
+      <div class="avatar-text">Shortyyguy</div>
+    </div>
+    <div>
+      <img alt="Syndicate" ng-click="selectStream('Syndicate')" src="assets/images/avatars/syndicate.png"/>
+      <div class="avatar-text">Syndicate</div>
+    </div>
+    <div>
+      <img alt="Trick2g" ng-click="selectStream('Trick2g')" src="assets/images/avatars/trick2g.png"/>
+      <div class="avatar-text">Trick2g</div>
+    </div>
+    <div>
+      <img alt="VernNotice" ng-click="selectStream('VernNotice')" src="assets/images/avatars/vernnotice.png"/>
+      <div class="avatar-text">VernNotice</div>
+    </div>
+  </div>
+</div>
+
+<div ng-show="showVideos">
+  <div class="bar"></div>
+
+  <div class="top-shot-small">
+    <div>
+      <img alt="Lirik" src="assets/images/avatars/lirik.png "/>
+    </div>
+    <div>
+      <img alt="Goldglove" src="assets/images/avatars/goldglove.png "/>
+    </div>
+    <div>
+      <img alt="GiantWaffle" src="assets/images/avatars/giantwaffle.png"/>
+    </div>
+    <div>
+      <img alt="C9Sneaky" src="assets/images/avatars/c9sneaky.png"/>
+    </div>
+    <div>
+      <img alt="Shortyyguy" src="assets/images/avatars/shortyyguy.png"/>
+    </div>
+    <div>
+      <img alt="Syndicate" src="assets/images/avatars/syndicate.png"/>
+    </div>
+    <div>
+      <img alt="Trick2g" src="assets/images/avatars/trick2g.png"/>
+    </div>
+    <div>
+      <img alt="VernNotice" src="assets/images/avatars/vernnotice.png"/>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div>
+      <h1>{{twitchName}}
+        <span class="fa fa-twitch"></span>
+      </h1>
+      <div class="video" ng-show="showVideos">
+        <!-- <iframe allowfullscreen autoplay="false" autostart="false" frameborder="0" height="383" ng-src="https://d301dinc95ec5f.cloudfront.net/capture/lirik-2015102117133764.shot.mp4" scrolling="no" width="680"></iframe> -->
+
+        <!-- <div class="videogular-container">
+          <videogular vg-theme="sources.theme.url">
+            <vg-media vg-native-controls="true" vg-src="sources.sources"></vg-media>
+
+          </videogular>
+        </div> -->
+
+        <div class="videogular-container">
+          <videogular ng-mouseenter="showControls = true" ng-mouseleave="showControls = false">
+            <vg-media vg-src="sources.sources"></vg-media>
+
+            <vg-controls ng-show="showControls">
+              <vg-play-pause-button></vg-play-pause-button>
+              <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+              <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              </vg-scrub-bar>
+              <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+              <vg-volume>
+                <vg-mute-button></vg-mute-button>
+                <vg-volume-bar></vg-volume-bar>
+              </vg-volume>
+              <vg-fullscreen-button></vg-fullscreen-button>
+            </vg-controls>
+
+            <vg-overlay-play></vg-overlay-play>
+          </videogular>
+        </div>
+
+        <div class="vid-bottom">
+          <p class="votes">
+            <span class="fa fa-arrow-circle-up {{styleUpVote}}" ng-click="vote('up')"></span>
+            <span class="fa fa-arrow-circle-down {{styleDownVote}}" ng-click="vote('down')"></span>
+          </p>
+          <p class="game-title">{{mainGame}}</p>
+          <p class="report">Report
+            <span class="fa fa-flag"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-videos">
+    <h1>Recent Shots
+      <span class="fa fa-caret-square-o-down "></span>
+    </h1>
+
+    <div ng-repeat="videos in stream">
+      <div ng-repeat="shot in videos.oddshots.slice().reverse()">
+        <img alt="" class="preview" ng-class='{select:$index == selectedVideo}' ng-click="selectShot(shot.link, shot.game, $index)" ng-src="{{shot.preview}}"/>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="home-footer">
+  <p>ABOUT</p>|
+  <p>FAQ</p>|
+  <p>TWITTER</p>
+</footer>
