@@ -1,7 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="top-shot-full" ng-hide="showVideos">
-  <div class="main-circle" ng-hide="showVideos">
+  <div class="main-circle" >
     <div>
       <div class="avatar-text">Lirik</div>
       <img alt="Lirik" ng-click="selectStream('Lirik')" src="assets/images/avatars/lirik.png"/>
@@ -74,15 +74,6 @@
         <span class="fa fa-twitch"></span>
       </h1>
       <div class="video" ng-show="showVideos">
-        <!-- <iframe allowfullscreen autoplay="false" autostart="false" frameborder="0" height="383" ng-src="https://d301dinc95ec5f.cloudfront.net/capture/lirik-2015102117133764.shot.mp4" scrolling="no" width="680"></iframe> -->
-
-        <!-- <div class="videogular-container">
-          <videogular vg-theme="sources.theme.url">
-            <vg-media vg-native-controls="true" vg-src="sources.sources"></vg-media>
-
-          </videogular>
-        </div> -->
-
         <div class="videogular-container">
           <videogular ng-mouseenter="showControls = true" ng-mouseleave="showControls = false">
             <vg-media vg-src="sources.sources"></vg-media>

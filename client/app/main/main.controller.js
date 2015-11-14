@@ -32,7 +32,7 @@ angular.module('multishotAppApp')
 			$location.path('/' + name, false);
 			initializeVideos(name);
 			startCarousel();
-			$timeout($scope.refreshCarousel, 15);
+			$timeout($scope.refreshCarousel, 20);
 		};
 
 		//Populates video page with data from stream selected.
@@ -87,7 +87,7 @@ angular.module('multishotAppApp')
 			initializeVideos($routeParams.user);
 			startCarousel();
 			$scope.carouselPosition();
-			$timeout($scope.refreshCarousel, 15);
+			$timeout($scope.refreshCarousel, 20);
 
 		}
 
