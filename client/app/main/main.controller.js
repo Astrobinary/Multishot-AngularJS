@@ -32,7 +32,7 @@ angular.module('multishotAppApp')
 			$location.path('/' + name, false);
 			initializeVideos(name);
 			startCarousel();
-			$timeout($scope.refreshCarousel, 20);
+			$timeout($scope.refreshCarousel, 100);
 		};
 
 		//Populates video page with data from stream selected.
@@ -59,6 +59,12 @@ angular.module('multishotAppApp')
 					}],
 				theme: {
 					url: 'http://www.videogular.com/styles/themes/default/latest/videogular.css'
+				},
+				plugins: {
+					controls: {
+						autoHide: true,
+						autoHideTime: 1000
+					}
 				}
 			};
 		};
@@ -87,7 +93,7 @@ angular.module('multishotAppApp')
 			initializeVideos($routeParams.user);
 			startCarousel();
 			$scope.carouselPosition();
-			$timeout($scope.refreshCarousel, 20);
+			$timeout($scope.refreshCarousel, 100);
 
 		}
 
