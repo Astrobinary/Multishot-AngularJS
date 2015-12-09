@@ -58,7 +58,7 @@ angular.module('multishotAppApp')
 					type: 'video/mp4'
 					}],
 				theme: {
-					url: 'http://www.videogular.com/styles/themes/default/latest/videogular.css'
+					url: 'https://www.videogular.com/styles/themes/default/latest/videogular.css'
 				},
 				plugins: {
 					controls: {
