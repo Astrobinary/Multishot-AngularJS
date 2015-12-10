@@ -6,7 +6,7 @@
       <div class="avatar-text">Lirik</div>
       <img alt="Lirik" ng-click="selectStream('Lirik')" src="assets/images/avatars/lirik.png"/>
     </div>
-    <div>
+    <div >
       <div class="avatar-text">GoldGlove</div>
       <img alt="GoldGlove" ng-click="selectStream('Goldglove')" src="assets/images/avatars/goldglove.png"/>
     </div>
@@ -43,28 +43,28 @@
 
   <div class="top-shot-small">
     <div>
-      <img alt="Lirik" src="assets/images/avatars/lirik.png "/>
+      <img alt="Lirik" src="assets/images/avatars/lirik.png " title="Lirik"/>
     </div>
     <div>
-      <img alt="Goldglove" src="assets/images/avatars/goldglove.png "/>
+      <img alt="Goldglove" src="assets/images/avatars/goldglove.png " title="Goldglove"/>
     </div>
     <div>
-      <img alt="GiantWaffle" src="assets/images/avatars/giantwaffle.png"/>
+      <img alt="GiantWaffle" src="assets/images/avatars/giantwaffle.png" title="GiantWaffle"/>
     </div>
     <div>
-      <img alt="C9Sneaky" src="assets/images/avatars/c9sneaky.png"/>
+      <img alt="C9Sneaky" src="assets/images/avatars/c9sneaky.png" title="C9Sneaky"/>
     </div>
     <div>
-      <img alt="Shortyyguy" src="assets/images/avatars/shortyyguy.png"/>
+      <img alt="Shortyyguy" src="assets/images/avatars/shortyyguy.png" title="Shortyyguy"/>
     </div>
     <div>
-      <img alt="Syndicate" src="assets/images/avatars/syndicate.png"/>
+      <img alt="Syndicate" src="assets/images/avatars/syndicate.png" title="Syndicate"/>
     </div>
     <div>
-      <img alt="Trick2g" src="assets/images/avatars/trick2g.png"/>
+      <img alt="Trick2g" src="assets/images/avatars/trick2g.png" title="Trick2g"/>
     </div>
     <div>
-      <img alt="VernNotice" src="assets/images/avatars/vernnotice.png"/>
+      <img alt="VernNotice" src="assets/images/avatars/vernnotice.png" title="VernNotice"/>
     </div>
   </div>
 
@@ -110,7 +110,7 @@
 
   <div class="more-videos">
     <h1>Recent Shots
-      <span class="fa fa-caret-square-o-down "></span>
+      <span " class="fa fa-angle-down"></span>
     </h1>
 
     <div ng-repeat="videos in stream">
@@ -122,7 +122,7 @@
 
 </div>
 
-<footer class="home-footer">
+<footer class="{{footerStyle}}">
   <p>ABOUT</p>|
   <p>FAQ</p>|
   <p>TWITTER</p>

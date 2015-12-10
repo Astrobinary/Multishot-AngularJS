@@ -2,6 +2,8 @@
 angular.module('multishotAppApp')
 	.controller('MainCtrl', function ($scope, $http, $location, $routeParams, $sce, $timeout, $route, $rootScope) {
 
+		$scope.footerStyle = 'home-footer';
+
 		//Prevents reload on location path unless wanted.
 		var original = $location.path;
 		$location.path = function (path, reload) {
@@ -23,6 +25,8 @@ angular.module('multishotAppApp')
 				centerMode: true,
 				focusOnSelect: true,
 				variableWidth: true,
+				draggable: false,
+				arrows: false,
 				initialSlide: $scope.carouselPosition()
 			});
 		};
@@ -30,9 +34,11 @@ angular.module('multishotAppApp')
 		//User selects a streamer from the homepage
 		$scope.selectStream = function (name) {
 			$location.path('/' + name, false);
+			$scope.footerStyle = 'video-footer';
 			initializeVideos(name);
 			startCarousel();
-			$timeout($scope.refreshCarousel, 100);
+			// $scope.refreshCarousel();
+			$timeout($scope.refreshCarousel, 10);
 		};
 
 		//Populates video page with data from stream selected.
@@ -57,9 +63,6 @@ angular.module('multishotAppApp')
 					src: $sce.trustAsResourceUrl($scope.mainVideo),
 					type: 'video/mp4'
 					}],
-				// theme: {
-				// 	url: 'https://www.videogular.com/styles/themes/default/latest/videogular.css'
-				// },
 				plugins: {
 					controls: {
 						autoHide: true,
@@ -94,6 +97,7 @@ angular.module('multishotAppApp')
 			startCarousel();
 			$scope.carouselPosition();
 			$timeout($scope.refreshCarousel, 100);
+			$scope.footerStyle = 'video-footer';
 
 		}
 
