@@ -64,13 +64,14 @@ body {
   }
 }
 .top-shot-small {
-  margin   : -60px auto !important;
+  margin   : -22px auto !important;
   max-width: 778px;
   position : absolute !important;
   margin-left : auto;
   margin-right: auto;
   left     : 0;
   right    : 0;
+  display  : none;
   div {
     padding-left: 10px;
     .selected {
@@ -135,7 +136,7 @@ vg-controls {
 .bar {
   box-shadow             : 0 4px 9px 0 rgba(0, 0, 0, 0.35);
   text-align             : center;
-  margin                 : 3 auto;
+  margin                 : 0 auto;
   height                 : 40px;
   background             : $black;
   background             : url(../assets/images/shotsbg.png) no-repeat center center fixed;
@@ -146,19 +147,22 @@ vg-controls {
   z-index                : 20;
 }
 .video-section {
-  height          : auto;
+  height          : 600px;
   background-color: white;
   background      : $background;
   box-shadow      : inset 0 20px 20px -20px rgba(0,0,0,0.8), inset 0 -20px 20px -20px rgba(0,0,0,0.8);
-  margin-top      : -15px;
-  padding-bottom  : 90px;
-  h1 {
+  display         : none;
+  div {
+    margin-top: -13px;
+  }
+  .twitch-name {
     font-size     : 20px;
     padding-top   : 30px;
     margin-bottom : 40px;
     text-align    : center;
     color         : $light-gray;
     letter-spacing: 3px;
+    opacity       : 0;
   }
   .video {
     text-align                : center;
@@ -219,6 +223,7 @@ vg-controls {
 }
 .more-videos {
   text-align: center;
+  height    : auto;
   h1 {
     color      : $light-gray;
     text-shadow: 0 4px 9px #202020;

@@ -39,7 +39,6 @@
 </div>
 
 <div ng-show="showVideos">
-  <div class="bar"></div>
 
   <div class="top-shot-small">
     <div>
@@ -68,9 +67,11 @@
     </div>
   </div>
 
+  <div class="bar"></div>
+
   <div class="video-section">
     <div>
-      <h1>{{twitchName}}</h1>
+      <h1 class="twitch-name">{{twitchName}}</h1>
       <div class="video" ng-show="showVideos">
         <div class="videogular-container">
           <videogular ng-mouseenter="showControls = true" ng-mouseleave="showControls = false" vg-preload="auto">
@@ -109,8 +110,9 @@
   </div>
 
   <div class="more-videos">
+
     <h1>Recent Shots
-      <span " class="fa fa-angle-down"></span>
+      <span class="fa fa-angle-down"></span>
     </h1>
 
     <div ng-repeat="videos in stream">
@@ -118,6 +120,7 @@
         <img alt="" class="preview" ng-class='{select:$index == selectedVideo}' ng-click="selectShot(shot.link, shot.game, $index)" ng-src="{{shot.preview}}"/>
       </div>
     </div>
+
   </div>
 
 </div>

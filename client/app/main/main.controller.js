@@ -33,12 +33,24 @@ angular.module('multishotAppApp')
 
 		//User selects a streamer from the homepage
 		$scope.selectStream = function (name) {
-			$location.path('/' + name, false);
-			$scope.footerStyle = 'video-footer';
-			initializeVideos(name);
-			startCarousel();
-			// $scope.refreshCarousel();
-			$timeout($scope.refreshCarousel, 10);
+			$('.top-shot-full').animate({
+				height: '40px'
+			}, 500, function () {
+				$location.path('/' + name, false);
+				initializeVideos(name);
+				startCarousel();
+				$('.video-section').slideDown(1000, function () {
+					$('.top-shot-small').fadeIn(500);
+					$timeout($scope.refreshCarousel, 50);
+					$('.twitch-name').fadeTo('slow', 1);
+				});
+
+				$timeout(function () {
+					$scope.footerStyle = 'video-footer';
+				}, 1000);
+
+			});
+
 		};
 
 		//Populates video page with data from stream selected.
@@ -96,7 +108,12 @@ angular.module('multishotAppApp')
 			initializeVideos($routeParams.user);
 			startCarousel();
 			$scope.carouselPosition();
-			$timeout($scope.refreshCarousel, 100);
+			$('.top-shot-small').show(function () {
+				$timeout($scope.refreshCarousel, 100);
+				$('.twitch-name').fadeTo('slow', 1);
+			});
+
+			$('.video-section').show();
 			$scope.footerStyle = 'video-footer';
 
 		}
@@ -107,7 +124,6 @@ angular.module('multishotAppApp')
 			$location.path('/' + name, false);
 			$scope.twitchName = name;
 			initializeVideos(name);
-
 			$scope.$apply();
 		});
 
