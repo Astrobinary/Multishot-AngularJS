@@ -73,7 +73,7 @@
       <h1>{{twitchName}}</h1>
       <div class="video" ng-show="showVideos">
         <div class="videogular-container">
-          <videogular ng-mouseenter="showControls = true" ng-mouseleave="showControls = false" vg-preload="auto" vg-theme="sources.theme.url">
+          <videogular ng-mouseenter="showControls = true" ng-mouseleave="showControls = false" vg-preload="auto">
             <vg-media vg-src="sources.sources"></vg-media>
 
             <vg-controls ng-show="showControls" vg-autohide-time="sources.plugins.controls.autoHideTime" vg-autohide="sources.plugins.controls.autoHide">

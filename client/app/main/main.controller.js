@@ -57,9 +57,9 @@ angular.module('multishotAppApp')
 					src: $sce.trustAsResourceUrl($scope.mainVideo),
 					type: 'video/mp4'
 					}],
-				theme: {
-					url: 'https://www.videogular.com/styles/themes/default/latest/videogular.css'
-				},
+				// theme: {
+				// 	url: 'https://www.videogular.com/styles/themes/default/latest/videogular.css'
+				// },
 				plugins: {
 					controls: {
 						autoHide: true,
