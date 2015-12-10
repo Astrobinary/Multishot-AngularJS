@@ -33,16 +33,20 @@ angular.module('multishotAppApp')
 
 		//User selects a streamer from the homepage
 		$scope.selectStream = function (name) {
+			$('.main-circle').fadeOut(500);
+
 			$('.top-shot-full').animate({
 				height: '40px'
 			}, 500, function () {
 				$location.path('/' + name, false);
 				initializeVideos(name);
 				startCarousel();
+
 				$('.video-section').slideDown(1000, function () {
 					$('.top-shot-small').fadeIn(500);
 					$timeout($scope.refreshCarousel, 50);
 					$('.twitch-name').fadeTo('slow', 1);
+					$('.more-videos').fadeIn(500);
 				});
 
 				$timeout(function () {
@@ -114,6 +118,8 @@ angular.module('multishotAppApp')
 			});
 
 			$('.video-section').show();
+			$('.more-videos').show();
+
 			$scope.footerStyle = 'video-footer';
 
 		}
