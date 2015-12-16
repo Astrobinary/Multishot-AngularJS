@@ -1,6 +1,7 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="top-shot-full" ng-hide="showVideos">
+
   <div class="main-circle">
     <div>
       <div class="avatar-text">Lirik</div>
@@ -18,7 +19,6 @@
       <div class="avatar-text">C9Sneaky</div>
       <img alt="C9Sneaky" ng-click="selectStream('C9Sneaky')" src="assets/images/avatars/c9sneaky.png"/>
     </div>
-
     <div>
       <img alt="Shortyyguy" ng-click="selectStream('Shortyyguy')" src="assets/images/avatars/shortyyguy.png"/>
       <div class="avatar-text">Shortyyguy</div>
@@ -36,6 +36,7 @@
       <div class="avatar-text">VernNotice</div>
     </div>
   </div>
+
 </div>
 
 <div ng-show="showVideos">
@@ -111,9 +112,7 @@
 
   <div class="more-videos">
 
-    <h1>Recent Shots
-      <span class="fa fa-angle-down"></span>
-    </h1>
+    <h1>Recent Shots</h1>
 
     <div ng-repeat="videos in stream">
       <div ng-repeat="shot in videos.oddshots.slice().reverse()">

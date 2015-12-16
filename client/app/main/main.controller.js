@@ -1,6 +1,6 @@
 'use strict';
 angular.module('multishotAppApp')
-	.controller('MainCtrl', function ($scope, $http, $location, $routeParams, $sce, $timeout, $route, $rootScope) {
+	.controller('MainCtrl', function ($scope, $http, $location, $routeParams, $sce, $timeout, $route, $rootScope, localStorageService) {
 
 		$scope.footerStyle = 'home-footer';
 
@@ -43,8 +43,8 @@ angular.module('multishotAppApp')
 				startCarousel();
 
 				$('.video-section').slideDown(1000, function () {
-					$('.top-shot-small').fadeIn(500);
 					$timeout($scope.refreshCarousel, 50);
+					$('.top-shot-small').fadeIn(500);
 					$('.twitch-name').fadeTo('slow', 1);
 					$('.more-videos').fadeIn(500);
 				});
@@ -54,6 +54,8 @@ angular.module('multishotAppApp')
 				}, 1000);
 
 			});
+
+			localStorageService.set('bacon', false);
 
 		};
 
