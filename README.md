@@ -2,7 +2,7 @@
 
 https://multishot.herokuapp.com/
 
-Personal project that displays oddshot videos. Created a twitch chat bot to gather the latest oddshots for particular streamers. Just a convenient way to watch any oddshots that I may have missed. 
+Personal project that displays oddshot videos from popular streamers. Created a twitch chat bot to gather the latest oddshots for particular streamers. Just a convenient way to watch any oddshots that I may have missed. 
 
 TODO:
   + Top 8 user choice
