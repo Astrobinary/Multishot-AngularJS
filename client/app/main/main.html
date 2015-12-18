@@ -1,70 +1,18 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="top-shot-full" ng-hide="showVideos">
-
   <div class="main-circle">
-    <div>
-      <div class="avatar-text">Lirik</div>
-      <img alt="Lirik" ng-click="selectStream('Lirik')" src="assets/images/avatars/lirik.png"/>
-    </div>
-    <div >
-      <div class="avatar-text">GoldGlove</div>
-      <img alt="GoldGlove" ng-click="selectStream('Goldglove')" src="assets/images/avatars/goldglove.png"/>
-    </div>
-    <div>
-      <div class="avatar-text">Giantwaffle</div>
-      <img alt="Giantwaffle" ng-click="selectStream('Giantwaffle')" src="assets/images/avatars/giantwaffle.png"/>
-    </div>
-    <div>
-      <div class="avatar-text">C9Sneaky</div>
-      <img alt="C9Sneaky" ng-click="selectStream('C9Sneaky')" src="assets/images/avatars/c9sneaky.png"/>
-    </div>
-    <div>
-      <img alt="Shortyyguy" ng-click="selectStream('Shortyyguy')" src="assets/images/avatars/shortyyguy.png"/>
-      <div class="avatar-text">Shortyyguy</div>
-    </div>
-    <div>
-      <img alt="Syndicate" ng-click="selectStream('Syndicate')" src="assets/images/avatars/syndicate.png"/>
-      <div class="avatar-text">Syndicate</div>
-    </div>
-    <div>
-      <img alt="Trick2g" ng-click="selectStream('Trick2g')" src="assets/images/avatars/trick2g.png"/>
-      <div class="avatar-text">Trick2g</div>
-    </div>
-    <div>
-      <img alt="VernNotice" ng-click="selectStream('VernNotice')" src="assets/images/avatars/vernnotice.png"/>
-      <div class="avatar-text">VernNotice</div>
+    <div ng-repeat="user in top8 | orderBy:'order'">
+      <div class="avatar-text">{{user.name}}</div>
+      <img ng-click="selectStream(user.name)" ng-src="{{user.logo}}"/>
     </div>
   </div>
-
 </div>
 
 <div ng-show="showVideos">
-
   <div class="top-shot-small">
-    <div>
-      <img alt="Lirik" src="assets/images/avatars/lirik.png " title="Lirik"/>
-    </div>
-    <div>
-      <img alt="Goldglove" src="assets/images/avatars/goldglove.png " title="Goldglove"/>
-    </div>
-    <div>
-      <img alt="GiantWaffle" src="assets/images/avatars/giantwaffle.png" title="GiantWaffle"/>
-    </div>
-    <div>
-      <img alt="C9Sneaky" src="assets/images/avatars/c9sneaky.png" title="C9Sneaky"/>
-    </div>
-    <div>
-      <img alt="Shortyyguy" src="assets/images/avatars/shortyyguy.png" title="Shortyyguy"/>
-    </div>
-    <div>
-      <img alt="Syndicate" src="assets/images/avatars/syndicate.png" title="Syndicate"/>
-    </div>
-    <div>
-      <img alt="Trick2g" src="assets/images/avatars/trick2g.png" title="Trick2g"/>
-    </div>
-    <div>
-      <img alt="VernNotice" src="assets/images/avatars/vernnotice.png" title="VernNotice"/>
+    <div ng-repeat="user in top8 | orderBy:'order'" repeat-done="buttonStart()">
+      <img alt="{{user.name}}" ng-click="smallSelect(user.name)" ng-src="{{user.logo}}" title="{{user.name}}"/>
     </div>
   </div>
 

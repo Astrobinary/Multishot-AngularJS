@@ -1,8 +1,10 @@
 'use strict';
 angular.module('multishotAppApp')
-	.controller('MainCtrl', function ($scope, $http, $location, $routeParams, $sce, $timeout, $route, $rootScope, localStorageService) {
+	.controller('MainCtrl', function ($scope, $http, $location, $routeParams, $sce, $timeout, $route, $rootScope) {
 
 		$scope.footerStyle = 'home-footer';
+		$scope.userList = ['lirik', 'goldglove', 'giantwaffle', 'c9sneaky', 'shortyyguy', 'syndicate', 'trick2g', 'vernnotice'];
+		$scope.top8 = [];
 
 		//Prevents reload on location path unless wanted.
 		var original = $location.path;
@@ -29,6 +31,16 @@ angular.module('multishotAppApp')
 				arrows: false,
 				initialSlide: $scope.carouselPosition()
 			});
+
+		};
+
+		$scope.buttonStart = function () {
+			console.log('button start');
+
+			if($scope.showVideos) {
+
+			}
+
 		};
 
 		//User selects a streamer from the homepage
@@ -44,24 +56,28 @@ angular.module('multishotAppApp')
 
 				$('.video-section').slideDown(1000, function () {
 					$timeout($scope.refreshCarousel, 50);
-					$('.top-shot-small').fadeIn(500);
-					$('.twitch-name').fadeTo('slow', 1);
+					$('.top-shot-small').fadeTo(1000, 1, function () {
+						$('.twitch-name').fadeTo(500, 1);
+					});
 					$('.more-videos').fadeIn(500);
 				});
 
 				$timeout(function () {
 					$scope.footerStyle = 'video-footer';
 				}, 1000);
-
 			});
-
-			localStorageService.set('bacon', false);
 
 		};
 
 		//Populates video page with data from stream selected.
 		var initializeVideos = function (name) {
 			$http.get('/api/streams/' + name).success(function (stream) {
+
+				if(stream.length < 1) {
+					$scope.showVideos = false;
+					return;
+				}
+
 				$scope.stream = stream;
 				var recentVideo = stream[0].oddshots.length - 1;
 				$scope.mainVideo = stream[0].oddshots[recentVideo].link;
@@ -91,15 +107,14 @@ angular.module('multishotAppApp')
 		};
 
 		$scope.carouselPosition = function () {
-			if($location.path() === '/Lirik') {
+			if($location.path() === '/lirik') {
 				return 0;
-			} else if($location.path() === '/Goldglove') {
+			} else if($location.path() === '/goldglove') {
 				return 1;
 			}
 		};
 
 		$scope.vote = function (direction) {
-			// TODO: Write vote logic here!
 			if(direction === 'up') {
 				$scope.styleUpVote = 'press';
 				$scope.styleDownVote = '';
@@ -112,28 +127,28 @@ angular.module('multishotAppApp')
 		// Checks url to match data displayed.
 		if($routeParams.user !== undefined) {
 			initializeVideos($routeParams.user);
-			startCarousel();
-			$scope.carouselPosition();
-			$('.top-shot-small').show(function () {
-				$timeout($scope.refreshCarousel, 100);
-				$('.twitch-name').fadeTo('slow', 1);
-			});
+
+			$timeout(function () {
+				$('.top-shot-small').fadeTo(1000, 1, function () {
+					$('.twitch-name').fadeTo(500, 1);
+				});
+			}, 500);
 
 			$('.video-section').show();
 			$('.more-videos').show();
-
 			$scope.footerStyle = 'video-footer';
+
+			$timeout(function () {
+				startCarousel();
+			}, 500);
 
 		}
 
-		//When carousel image is pressed.
-		$('.top-shot-small img').click(function () {
-			var name = $(this).attr('alt');
+		$scope.smallSelect = function (name) {
 			$location.path('/' + name, false);
 			$scope.twitchName = name;
 			initializeVideos(name);
-			$scope.$apply();
-		});
+		};
 
 		//When a video is selected from Recent Shots
 		$scope.selectShot = function (link, game, index) {
@@ -146,5 +161,24 @@ angular.module('multishotAppApp')
 		$scope.refreshCarousel = function () {
 			$('.top-shot-small').slick('setPosition');
 		};
+		$scope.test = function () {
+
+			console.log($scope.top8);
+		};
+
+		$scope.userList.forEach(function (name, order) {
+			$.getJSON('https://api.twitch.tv/kraken/channels/' + name + '?client_id=5j0r5b7qb7kro03fvka3o8kbq262wwm&callback=?').success(function (data) {
+				var obj = {};
+				order++;
+
+				obj.name = data.name;
+				obj.logo = data.logo;
+				obj.order = order;
+
+				$scope.top8.push(obj);
+				$scope.$apply();
+			});
+
+		});
 
 	}); //end of controller

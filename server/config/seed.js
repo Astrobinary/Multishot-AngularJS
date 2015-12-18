@@ -9,7 +9,7 @@ var Stream = require('../api/stream/stream.model');
 
 Stream.find({}).remove(function () {
 	Stream.create({
-		"name": "Lirik",
+		"name": "lirik",
 		"avatar": "http://static-cdn.jtvnw.net/jtv_user_pictures/lirik-profile_image-c0c34ecdea3ec322-300x300.jpeg",
 		"oddshots": [
 			{
@@ -51,7 +51,7 @@ Stream.find({}).remove(function () {
     ]
 	}, {
 
-		"name": "Goldglove",
+		"name": "goldglove",
 		"avatar": "",
 		"oddshots": [
 			{
