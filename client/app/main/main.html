@@ -1,6 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div class="top-shot-full" ng-hide="showVideos">
+<div class="top-shot-full" ng-show="homepage">
   <div class="main-circle">
     <div ng-repeat="user in top8 | orderBy:'order'">
       <div class="avatar-text">{{user.name}}</div>
@@ -9,18 +9,31 @@
   </div>
 </div>
 
-<div ng-show="showVideos">
-  <div class="top-shot-small">
-    <div ng-repeat="user in top8 | orderBy:'order'" repeat-done="buttonStart()">
+<div>
+  <div class="top-shot-small" ng-hide="homepage">
+    <div ng-repeat="user in top8 | orderBy:'order'">
       <img alt="{{user.name}}" ng-click="smallSelect(user.name)" ng-src="{{user.logo}}" title="{{user.name}}"/>
+    </div>
+
+  </div>
+  <h1 class="twitch-name">{{twitchName}}</h1>
+
+  <div class="bar" ng-hide="homepage"></div>
+
+  <div class="no-videos" ng-show="noVideos">'
+    <div>
+      No videos found, click here to add!
     </div>
   </div>
 
-  <div class="bar"></div>
-
-  <div class="video-section">
+  <div class="no-user" ng-show="notFound">
     <div>
-      <h1 class="twitch-name">{{twitchName}}</h1>
+      User was not found, make sure you spelled it properly.
+    </div>
+  </div>
+
+  <div class="video-section" ng-show="videoSection">
+    <div>
       <div class="video" ng-show="showVideos">
         <div class="videogular-container">
           <videogular ng-mouseenter="showControls = true" ng-mouseleave="showControls = false" vg-preload="auto">
@@ -58,7 +71,7 @@
     </div>
   </div>
 
-  <div class="more-videos">
+  <div class="more-videos" ng-show="videoSection">
 
     <h1>Recent Shots</h1>
 

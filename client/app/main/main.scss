@@ -36,6 +36,9 @@ body {
   display        : flex;
   justify-content: center;
   overflow       : auto;
+  .main-circle {
+    opacity: 0;
+  }
   div {
     align-self    : center;
     display       : inline-block;
@@ -102,6 +105,18 @@ body {
     }
   }
 }
+.twitch-name {
+  opacity      : 0;
+  position     : absolute;
+  text-align   : center;
+  left         : 0;
+  right        : 0;
+  top          : 201px;
+  font-weight  : 100;
+  font-size    : 25px;
+  padding-right: 1px;
+  color        : $light-gray;
+}
 .videogular-container {
   width   : 100%;
   height  : 383px;
@@ -156,21 +171,12 @@ vg-controls {
   z-index                : 20;
 }
 .video-section {
-  height          : 600px;
+  height          : 500px;
   background-color: white;
   background      : $background;
   box-shadow      : inset 0 20px 20px -20px rgba(0,0,0,0.8), inset 0 -20px 20px -20px rgba(0,0,0,0.8);
+  padding-top     : 100px;
   display         : none;
-  .twitch-name {
-    font-size     : 20px;
-    padding-top   : 30px;
-    margin-bottom : 40px;
-    margin-top    : 0;
-    text-align    : center;
-    color         : $light-gray;
-    letter-spacing: 3px;
-    opacity       : 0;
-  }
   .video {
     text-align                : center;
     box-shadow                : 0 0 40px -3px rgba(0,0,0,0.75);
@@ -227,6 +233,18 @@ vg-controls {
       }
     }
   }
+}
+.no-videos {
+  height          : calc(100vh - 290px);
+  background-color: white;
+  background      : $background;
+  box-shadow      : inset 0 20px 20px -20px rgba(0,0,0,0.8), inset 0 -20px 20px -20px rgba(0,0,0,0.8);
+}
+.no-user {
+  height          : calc(100vh - 290px);
+  background-color: white;
+  background      : $background;
+  box-shadow      : inset 0 20px 20px -20px rgba(0,0,0,0.8), inset 0 -20px 20px -20px rgba(0,0,0,0.8);
 }
 .more-videos {
   text-align: center;
@@ -288,6 +306,7 @@ vg-controls {
   cursor    : default;
   padding   : 30px;
   background: $background;
+  box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8), inset 0 -20px 20px -20px rgba(0, 0, 0, 0.8);
   p {
     text-shadow   : 0 4px 9px $black;
     display       : inline-block;

@@ -5,6 +5,18 @@ angular.module('multishotAppApp')
 		$scope.footerStyle = 'home-footer';
 		$scope.userList = ['lirik', 'goldglove', 'giantwaffle', 'c9sneaky', 'shortyyguy', 'syndicate', 'trick2g', 'vernnotice'];
 		$scope.top8 = [];
+		$scope.list = [];
+		// $scope.noVideos = false;
+		// $scope.showVideos = false;
+		$scope.homepage = true;
+
+		$http.get('/api/list/').success(function (list) {
+			$scope.list = list[0].names;
+		});
+
+		$timeout(function () {
+			$('.main-circle').fadeTo(1000, 1);
+		}, 300);
 
 		//Prevents reload on location path unless wanted.
 		var original = $location.path;
@@ -20,7 +32,7 @@ angular.module('multishotAppApp')
 		};
 
 		//Initialize carousel
-		var startCarousel = function () {
+		var startCarousel = function (name) {
 			$('.top-shot-small').slick({
 				slidesToShow: 7,
 				slidesToScroll: 2,
@@ -29,17 +41,8 @@ angular.module('multishotAppApp')
 				variableWidth: true,
 				draggable: false,
 				arrows: false,
-				initialSlide: $scope.carouselPosition()
+				initialSlide: $scope.carouselPosition(name)
 			});
-
-		};
-
-		$scope.buttonStart = function () {
-			console.log('button start');
-
-			if($scope.showVideos) {
-
-			}
 
 		};
 
@@ -52,7 +55,7 @@ angular.module('multishotAppApp')
 			}, 500, function () {
 				$location.path('/' + name, false);
 				initializeVideos(name);
-				startCarousel();
+				startCarousel(name);
 
 				$('.video-section').slideDown(1000, function () {
 					$timeout($scope.refreshCarousel, 50);
@@ -62,19 +65,23 @@ angular.module('multishotAppApp')
 					$('.more-videos').fadeIn(500);
 				});
 
-				$timeout(function () {
-					$scope.footerStyle = 'video-footer';
-				}, 1000);
 			});
 
 		};
 
 		//Populates video page with data from stream selected.
 		var initializeVideos = function (name) {
+
 			$http.get('/api/streams/' + name).success(function (stream) {
 
 				if(stream.length < 1) {
+					$scope.footerStyle = 'home-footer';
+					$scope.homepage = false;
 					$scope.showVideos = false;
+					$scope.noVideos = true;
+					$scope.notFound = false;
+					$scope.videoSection = false;
+					$scope.twitchName = name;
 					return;
 				}
 
@@ -85,7 +92,29 @@ angular.module('multishotAppApp')
 				$scope.twitchName = name;
 				$scope.selectedVideo = 0;
 				$scope.showVideos = true;
+				$scope.videoSection = true;
+				$scope.homepage = false;
+				$scope.noVideos = false;
+				$scope.notFound = false;
+
+				$timeout(function () {
+					$scope.footerStyle = 'video-footer';
+				}, 1000);
+
 				$scope.videoPlay();
+			});
+
+		};
+
+		$scope.checkList = function () {
+			$http.get('/api/list/').success(function (list) {
+				if(list[0].names.indexOf($routeParams.user) === -1) {
+					$scope.showVideos = false;
+					$scope.noVideos = false;
+					$scope.videoSection = false;
+					$scope.notFound = true;
+					$scope.footerStyle = 'home-footer';
+				}
 			});
 		};
 
@@ -106,12 +135,8 @@ angular.module('multishotAppApp')
 			};
 		};
 
-		$scope.carouselPosition = function () {
-			if($location.path() === '/lirik') {
-				return 0;
-			} else if($location.path() === '/goldglove') {
-				return 1;
-			}
+		$scope.carouselPosition = function (name) {
+			return $scope.userList.indexOf($routeParams.user || name);
 		};
 
 		$scope.vote = function (direction) {
@@ -126,7 +151,10 @@ angular.module('multishotAppApp')
 
 		// Checks url to match data displayed.
 		if($routeParams.user !== undefined) {
+			$scope.checkList();
 			initializeVideos($routeParams.user);
+			$scope.homepage = false;
+			$scope.twitchName = $routeParams.user;
 
 			$timeout(function () {
 				$('.top-shot-small').fadeTo(1000, 1, function () {
@@ -160,10 +188,6 @@ angular.module('multishotAppApp')
 
 		$scope.refreshCarousel = function () {
 			$('.top-shot-small').slick('setPosition');
-		};
-		$scope.test = function () {
-
-			console.log($scope.top8);
 		};
 
 		$scope.userList.forEach(function (name, order) {
